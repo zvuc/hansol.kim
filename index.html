@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<head>
+  <meta name="HandheldFriendly" content="True">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+    html {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      overflow-y: auto;
+      --color: #d2ff85;
+      --color: oklch(94.21% 0.17 125.94);
+    }
+
+    body {
+      background-color: #B9BCC7;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      margin: 0;
+      padding: 0 10px;
+      color: var(--color);
+      font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
+      font-size: 24px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: auto;
+      font-size: 0.5em;
+      padding: 10px 0;
+    }
+
+    main {
+      margin-bottom: 20px;
+    }
+
+    @media screen and (min-width: 800px) {
+      main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 0 1em;
+      }
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 10px 0;
+      font-size: 0.5em;
+      text-align: center;
+    }
+
+    h1, p, ul li {
+      font-size: 2em;
+      line-height: 1;
+      margin: 0;
+      padding: 0;
+    }
+
+    @media screen and (min-width: 800px) {
+      main section.right {
+        text-align: right;
+      }
+    }
+
+    a, a:visited {
+      color: var(--color);
+    }
+    
+    svg#hansolkim {
+      width: 100vw;
+      max-width: 1920px;
+      max-height: 50vh;
+      min-height: 240px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    svg#hansolkim path {
+      fill: none;
+      stroke: var(--color);
+      stroke-linecap: butt;
+      stroke-width: 21px;
+      stroke-linejoin: bevel;
+      stroke-miterlimit: 10;
+      stroke-dasharray: 100;
+      animation: writeStroke 0.5s linear both;
+    }
+
+    @keyframes writeStroke {
+      from {
+        stroke-dashoffset: -100;
+      }
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    svg#hansolkim path.st01 {
+      animation-duration: 0.5s;
+      animation-timing-function: ease-in;
+      animation-delay: 0s;
+    }
+    svg#hansolkim path.st02 {
+      animation-duration: 0.7s;
+      animation-timing-function: ease-out;
+      animation-delay: 0.6s;
+    }
+    svg#hansolkim path.st03 {
+      animation-duration: 1.0s;
+      animation-delay: 0.1s;
+    }
+    svg#hansolkim path.st04 {
+      animation-duration: 0.6s;
+      animation-timing-function: ease-out;
+      animation-delay: 0.8s;
+    }
+    svg#hansolkim path.st05 {
+      animation-duration: 0.6s;
+      animation-timing-function: ease-out;
+      animation-delay: 0.2s;
+    }
+    svg#hansolkim path.st06 {
+      animation-duration: 0.8s;
+      animation-timing-function: ease-out;
+      animation-delay: 0.7s;
+    }
+  </style>
+</head>
+<html>
+  <header>
+    <p>hansol.kim</p>
+  </header>
+  <svg id="hansolkim" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 540">
+    <path class="st01" pathlength="100" d="M221.7,364C221.7,364 536,262.7 536,206.1C536,149.5 422.5,130.4 150.8,177.2C121.6,182.2 90.6,188 57.7,194.6"/>
+    <path class="st02" pathlength="100" d="M694.6,486.5c-152.6-1.4-295.1,15.5-295.1,15.5,0,0,111.4-27.2,148.7-49,125.3-72.9-21.9-140.6-146.9-86.9s-105.4,135.8-86,135.8,231.3-142.5,293.9-351.2"/>
+    <path class="st03" pathlength="100" d="M759,366.1c32.5-75.8,108.9-126,175.5-109.2,53.7,13.5,38,97.5-17,145-55,47.5-140.2,54.9-181.1,15.6-78-75,71.5-208.2,160.5-258.4,62.2-35,90.2-.8,57,18.4-33.2,19.3-181.2,56.8-298.4,27.2,138.2,18.9,181.7-68.6,224.6-166.7"/>
+    <path class="st04" pathlength="100" d="M1237.9,411.8c-60,37.7-237.4,115-253.4,45.1-19.5-85.1,119.1-166.3,204.9-226.1-74.1,54.4-171.1,62.1-163.3,6.7,5.7-40.9,22.5-113.4,22.5-113.4"/>
+    <path class="st05" pathlength="100" d="M1742.3,172.7s-53.9,19.4-91.3,22.1c-23.9,1.8-47.9-24.7-90.8-21.6-15.4,1.1-57.2,16.3-90.1,22-64.3,11.1-66.5-22.5-107.8-26.2-41.2-3.8-95.9,8.4-153.3,48.2,120.5-66.2,167.8-179.1,167.8-179.1"/>
+    <path class="st06" pathlength="100" d="M1596.2,484.3c-199.4,16.6-396.1-4.2-148.1-69.1,256.8-67.3-65.6-94.4-182.4-21.1,100.5-53.1,203.5-90.7,277.2-133.8-98.5,49.1-181.6,33.9-212.2,23.9-7.3-2.4-88.9-28.7-75,6.7,13.9,35.4,179.1-94.3,179.1-94.3"/>
+  </svg>
+  <main>
+    <section class="right">
+      <p>I am</p>
+    </section>
+    <section>
+      <h1>Hansol Kim</h1>
+    </section>
+    <section class="right">
+      <p>I design</p>
+      <p>create</p>
+    </section>
+    <section>
+      <ul>
+        <li>user interfaces & experiences</li>
+        <li>visual identities</li>
+      </ul>
+    </section>
+  </main>
+  <footer>
+    <p>©1991-2024 <a href="https://www.linkedin.com/in/zvuc/">linkedin</a> <a href="https://www.instagram.com/zvuc/">instagram</a></p>
+  </footer>
+</html>
