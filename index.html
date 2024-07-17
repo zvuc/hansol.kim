@@ -82,6 +82,7 @@
       margin-bottom: min(5vmin,20px);
       padding: 0 10px;
       text-align: center;
+      pointer-events: none;
     }
 
     @media screen and (min-width: 800px) {
@@ -267,7 +268,6 @@
       transition: opacity 0.5s;
     }
 
-    body:hover .highlight,
     body.touching .highlight {
       opacity: 1;
       transition-duration: 0.3s;
@@ -362,10 +362,12 @@
         targetRotateX = 0.0001;
         targetRotateY = 0.0001;
         isMouseActive = false;
+        container.classList.remove('touching');
       });
 
       container.addEventListener('mouseenter', () => {
         isMouseActive = true;
+        container.classList.add('touching');
       });
 
       container.addEventListener('touchstart', () => {
