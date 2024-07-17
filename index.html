@@ -28,7 +28,6 @@
       margin: 0;
       padding: 0;
       overflow: hidden;
-      overflow-y: auto;
     }
 
     body {
@@ -42,26 +41,45 @@
       padding: 0;
       color: var(--color);
       font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, Helvetica, sans-serif;
-      font-size: 20px;
+      font-size: min(4vmin,20px);
+      perspective: 1000px;
+      cursor: crosshair;
     }
 
-    @media screen and (min-width: 375px) {
+    @media screen and (min-width: 375px) and (min-height: 540px) {
       body {
         font-size: 24px;
       }
     }
 
+    .container {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+/*      transition: transform 0.6s cubic-bezier(.54,.08,0,1);*/
+    }
+
+    .container:hover {
+      transition-duration: 0s;
+    }
+
     header {
+      position: fixed;
+      top: 0;
       text-align: center;
       margin-bottom: auto;
       font-size: 0.5em;
       padding: 10px 0;
+      z-index: 100;
     }
 
     main {
       display: grid;
       justify-items: center;
-      margin-bottom: 20px;
+      margin-bottom: min(5vmin,20px);
       padding: 0 10px;
       text-align: center;
     }
@@ -83,10 +101,13 @@
     }
 
     footer {
+      position: fixed;
+      bottom: 0;
       margin-top: auto;
       padding: 10px 0;
       font-size: 0.5em;
       text-align: center;
+      z-index: 100;
     }
 
     h1, p, ul li {
@@ -140,9 +161,9 @@
     svg#hansolkim {
       width: 100vw;
       max-width: 1920px;
-      max-height: 50vh;
-      margin-top: 20px;
-      margin-bottom: 20px;
+      max-height: 40vh;
+      margin-top: min(5vmin,20px);
+      margin-bottom: min(5vmin,20px);
       min-width: 120%;
     }
 
@@ -219,39 +240,166 @@
     main section:nth-child(3) {
       animation-delay: 0.7s;
     }
+
+    .highlight-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      pointer-events: none;
+      mix-blend-mode: color-dodge;
+    }
+
+    .highlight {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 80vw;
+      height: 80vw;
+      background-image: radial-gradient(rgba(190,192,220,1) 0%,rgba(185,188,199,0) 50%);
+      border-radius: 100%;
+      margin: -40vw 0 0 -40vw;
+      pointer-events: none;
+      z-index: 101;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    body:hover .highlight,
+    body.touching .highlight {
+      opacity: 1;
+      transition-duration: 0.3s;
+    }
   </style>
 </head>
 <html>
   <header>
     <p>hansol.kim</p>
   </header>
-  <div class="svg-wrap">
-    <svg id="hansolkim" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 540">
-      <path class="st01" fill="none" stroke="currentColor" stroke-width="21px" pathlength="100" d="M221.7,364C221.7,364 536,262.7 536,206.1C536,149.5 422.5,130.4 150.8,177.2C121.6,182.2 90.6,188 57.7,194.6"/>
-      <path class="st02" fill="none" stroke="currentColor" stroke-width="21px" pathlength="100" d="M694.6,486.5c-152.6-1.4-295.1,15.5-295.1,15.5,0,0,111.4-27.2,148.7-49,125.3-72.9-21.9-140.6-146.9-86.9s-105.4,135.8-86,135.8,231.3-142.5,293.9-351.2"/>
-      <path class="st03" fill="none" stroke="currentColor" stroke-width="21px" pathlength="100" d="M759,366.1c32.5-75.8,108.9-126,175.5-109.2,53.7,13.5,38,97.5-17,145-55,47.5-140.2,54.9-181.1,15.6-78-75,71.5-208.2,160.5-258.4,62.2-35,90.2-.8,57,18.4-33.2,19.3-181.2,56.8-298.4,27.2,138.2,18.9,181.7-68.6,224.6-166.7"/>
-      <path class="st04" fill="none" stroke="currentColor" stroke-width="21px" pathlength="100" d="M1237.9,411.8c-60,37.7-237.4,115-253.4,45.1-19.5-85.1,119.1-166.3,204.9-226.1-74.1,54.4-171.1,62.1-163.3,6.7,5.7-40.9,22.5-113.4,22.5-113.4"/>
-      <path class="st05" fill="none" stroke="currentColor" stroke-width="21px" pathlength="100" d="M1742.3,172.7s-53.9,19.4-91.3,22.1c-23.9,1.8-47.9-24.7-90.8-21.6-15.4,1.1-57.2,16.3-90.1,22-64.3,11.1-66.5-22.5-107.8-26.2-41.2-3.8-95.9,8.4-153.3,48.2,120.5-66.2,167.8-179.1,167.8-179.1"/>
-      <path class="st06" fill="none" stroke="currentColor" stroke-width="21px" pathlength="100" d="M1596.2,484.3c-199.4,16.6-396.1-4.2-148.1-69.1,256.8-67.3-65.6-94.4-182.4-21.1,100.5-53.1,203.5-90.7,277.2-133.8-98.5,49.1-181.6,33.9-212.2,23.9-7.3-2.4-88.9-28.7-75,6.7,13.9,35.4,179.1-94.3,179.1-94.3"/>
-    </svg>
+  <div class="container">
+    <div class="svg-wrap">
+      <svg id="hansolkim" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 540">
+        <path class="st01" fill="none" stroke="currentColor" stroke-width="21px" pathlength="100" d="M221.7,364C221.7,364 536,262.7 536,206.1C536,149.5 422.5,130.4 150.8,177.2C121.6,182.2 90.6,188 57.7,194.6"/>
+        <path class="st02" fill="none" stroke="currentColor" stroke-width="21px" pathlength="100" d="M694.6,486.5c-152.6-1.4-295.1,15.5-295.1,15.5,0,0,111.4-27.2,148.7-49,125.3-72.9-21.9-140.6-146.9-86.9s-105.4,135.8-86,135.8,231.3-142.5,293.9-351.2"/>
+        <path class="st03" fill="none" stroke="currentColor" stroke-width="21px" pathlength="100" d="M759,366.1c32.5-75.8,108.9-126,175.5-109.2,53.7,13.5,38,97.5-17,145-55,47.5-140.2,54.9-181.1,15.6-78-75,71.5-208.2,160.5-258.4,62.2-35,90.2-.8,57,18.4-33.2,19.3-181.2,56.8-298.4,27.2,138.2,18.9,181.7-68.6,224.6-166.7"/>
+        <path class="st04" fill="none" stroke="currentColor" stroke-width="21px" pathlength="100" d="M1237.9,411.8c-60,37.7-237.4,115-253.4,45.1-19.5-85.1,119.1-166.3,204.9-226.1-74.1,54.4-171.1,62.1-163.3,6.7,5.7-40.9,22.5-113.4,22.5-113.4"/>
+        <path class="st05" fill="none" stroke="currentColor" stroke-width="21px" pathlength="100" d="M1742.3,172.7s-53.9,19.4-91.3,22.1c-23.9,1.8-47.9-24.7-90.8-21.6-15.4,1.1-57.2,16.3-90.1,22-64.3,11.1-66.5-22.5-107.8-26.2-41.2-3.8-95.9,8.4-153.3,48.2,120.5-66.2,167.8-179.1,167.8-179.1"/>
+        <path class="st06" fill="none" stroke="currentColor" stroke-width="21px" pathlength="100" d="M1596.2,484.3c-199.4,16.6-396.1-4.2-148.1-69.1,256.8-67.3-65.6-94.4-182.4-21.1,100.5-53.1,203.5-90.7,277.2-133.8-98.5,49.1-181.6,33.9-212.2,23.9-7.3-2.4-88.9-28.7-75,6.7,13.9,35.4,179.1-94.3,179.1-94.3"/>
+      </svg>
+    </div>
+    <main>
+      <section class="main">
+        <p>I am</p>
+        <h1>hansol.kim</h1>
+      </section>
+      <section class="right">
+        <p>I design & craft</p>
+      </section>
+      <section>
+        <ul>
+          <li>user interfaces</li>
+          <li>experiences</li>
+          <li>visual identities</li>
+        </ul>
+      </section>
+    </main>
   </div>
-  <main>
-    <section class="main">
-      <p>I am</p>
-      <h1>hansol.kim</h1>
-    </section>
-    <section class="right">
-      <p>I design </p>
-      <p>& craft</p>
-    </section>
-    <section>
-      <ul>
-        <li>user interfaces & experiences</li>
-        <li>visual identities</li>
-      </ul>
-    </section>
-  </main>
   <footer>
     <p>©1991-2024 <a href="https://www.linkedin.com/in/zvuc/">linkedin</a> <a href="https://www.instagram.com/zvuc/">instagram</a></p>
   </footer>
+  <div class="highlight-wrap">
+    <div class="highlight"></div>
+  </div>
+
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.querySelector('body');
+      const viewport = document.querySelector('.container');
+      const followDiv = document.querySelector('.highlight');
+
+      let targetRotateX = 0;
+      let targetRotateY = 0;
+      let currentRotateX = 0;
+      let currentRotateY = 0;
+      let isMouseActive = false;
+
+      const easeValue = (current, target, ease) => (current + (target - current) * ease);
+
+      const animate = () => {
+        currentRotateX = easeValue(currentRotateX, targetRotateX, 0.1);
+        currentRotateY = easeValue(currentRotateY, targetRotateY, 0.1);
+
+        viewport.style.transform = `rotateX(${currentRotateX}deg) rotateY(${currentRotateY}deg)`;
+
+        requestAnimationFrame(animate);
+      };
+
+      const handleMouseMove = (x, y) => {
+        const { width, height, left, top } = container.getBoundingClientRect();
+        const offsetX = x - left;
+        const offsetY = y - top;
+
+        targetRotateX = ((offsetY / height) - 0.5) * 25;
+        targetRotateY = ((offsetX / width) - 0.5) * -25;
+
+        isMouseActive = true;
+      };
+
+      const handleTouchMove = (e) => {
+        if (e.touches.length > 0) {
+          const { clientX, clientY } = e.touches[0];
+          handleMouseMove(clientX, clientY);
+        }
+      };
+
+      container.addEventListener('mousemove', (e) => {
+        handleMouseMove(e.clientX, e.clientY);
+      });
+
+      container.addEventListener('mouseleave', () => {
+        targetRotateX = 0.0001;
+        targetRotateY = 0.0001;
+        isMouseActive = false;
+      });
+
+      container.addEventListener('mouseenter', () => {
+        isMouseActive = true;
+      });
+
+      container.addEventListener('touchstart', () => {
+        container.classList.add('touching');
+        isMouseActive = true;
+      });
+
+      container.addEventListener('touchmove', (e) => {
+        handleTouchMove(e);
+      });
+
+      container.addEventListener('touchend', () => {
+        targetRotateX = 0.0001;
+        targetRotateY = 0.0001;
+        isMouseActive = false;
+        container.classList.remove('touching');
+      });
+
+      const handleFollowMove = (x, y) => {
+        followDiv.style.transform = `translate(${x}px, ${y}px)`;
+      };
+
+      document.addEventListener('mousemove', (e) => {
+        handleFollowMove(e.clientX, e.clientY);
+      });
+
+      document.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+          const { clientX, clientY } = e.touches[0];
+          handleFollowMove(clientX, clientY);
+        }
+      });
+
+      animate();
+    });
+  </script>
 </html>
