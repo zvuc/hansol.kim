@@ -83,6 +83,7 @@
       padding: 0 10px;
       text-align: center;
       pointer-events: none;
+      user-select: none;
     }
 
     @media screen and (min-width: 800px) {
@@ -175,17 +176,17 @@
       stroke-width: 21px;
       stroke-linejoin: bevel;
       stroke-miterlimit: 10;
-      stroke-dasharray: 100;
-      stroke-dashoffset: 100;
+      stroke-dasharray: 110;
+      stroke-dashoffset: 110;
       animation: writeStroke 0.5s linear both;
     }
 
     @keyframes writeStroke {
       from {
-        stroke-dashoffset: 100;
+        stroke-dashoffset: 110;
       }
       to {
-        stroke-dashoffset: 200;
+        stroke-dashoffset: 220;
       }
     }
 
@@ -292,7 +293,7 @@
     <main>
       <section class="main">
         <p>I am</p>
-        <h1>hansol.kim</h1>
+        <h1>hansol kim</h1>
       </section>
       <section class="right">
         <p>I design & craft</p>
@@ -307,7 +308,7 @@
     </main>
   </div>
   <footer>
-    <p>©1991-2024 <a href="https://www.linkedin.com/in/zvuc/">linkedin</a> <a href="https://www.instagram.com/zvuc/">instagram</a></p>
+    <p><a href="https://www.linkedin.com/in/zvuc/">linkedin</a> <a href="https://www.instagram.com/zvuc/">instagram</a> <a href="https://github.com/zvuc/">github</a></p>
   </footer>
   <div class="highlight-wrap">
     <div class="highlight"></div>
@@ -324,8 +325,9 @@
       let currentRotateX = 0;
       let currentRotateY = 0;
       let isMouseActive = false;
+      let isTouchActive = false;
 
-      const easeValue = (current, target, ease) => (current + (target - current) * ease);
+      const easeValue = (current, target, ease) => current + (target - current) * ease;
 
       const animate = () => {
         currentRotateX = easeValue(currentRotateX, targetRotateX, 0.1);
@@ -366,13 +368,13 @@
       });
 
       container.addEventListener('mouseenter', () => {
-        isMouseActive = true;
         container.classList.add('touching');
+        isMouseActive = true;
       });
 
       container.addEventListener('touchstart', () => {
         container.classList.add('touching');
-        isMouseActive = true;
+        isTouchActive = true;
       });
 
       container.addEventListener('touchmove', (e) => {
@@ -382,7 +384,7 @@
       container.addEventListener('touchend', () => {
         targetRotateX = 0.0001;
         targetRotateY = 0.0001;
-        isMouseActive = false;
+        isTouchActive = false;
         container.classList.remove('touching');
       });
 
@@ -401,7 +403,17 @@
         }
       });
 
+      document.addEventListener('touchend', () => {
+        if (isTouchActive) {
+          targetRotateX = 0;
+          targetRotateY = 0;
+          isTouchActive = false;
+          container.classList.remove('touching');
+        }
+      });
+
       animate();
     });
+
   </script>
 </html>
